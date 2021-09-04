@@ -1,0 +1,20 @@
+<style type="text/css">
+	.data-div {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    margin-top: 58px;
+	}
+</style>
+<div class="data-div">
+	<%= form_tag({:action => :upload}, multipart: true) do %>
+	  <%= file_field_tag :file %>
+	  <%= submit_tag( "Import" ) %>
+	<% end %>
+
+	<% if session[:details].present? %>
+		<% session[:details].each do |detail| %>
+			<p><%= detail %></p>
+		<% end %>
+	<% end %>
+</div>
