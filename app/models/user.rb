@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  validates :name, presence: true
   validate :check_validation
 
   def check_validation

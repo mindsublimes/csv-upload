@@ -5,8 +5,8 @@ class CsvUploadsController < ApplicationController
 
   def upload
     session[:details] = []
-    CSV.foreach(params[:file], quote_char: nil, col_sep: "\t", row_sep: "\r\r\n") do |row|
-      next if row == ["name,password"]
+    CSV.foreach(params[:file], quote_char: nil, col_sep: "\t", row_sep: :auto) do |row|
+      next if row == ["name,password"] || row == [","] || row == []
       row = row[0].split(",")
       user = User.new(name: row[0], password: row[1])
       if user.save
